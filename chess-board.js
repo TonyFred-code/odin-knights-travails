@@ -64,7 +64,12 @@ class ChessBoard {
   isValid([x, y]) {
     return x >= 0 && x <= 7 && y >= 0 && y <= 7;
   }
-}
 
+  isSamePoint([x, y], [a, b]) {
+    if (!this.isValid(x, y) || !this.isValid(a, b)) return false;
+
+    return x === a && y === b;
+  }
+}
 
 module.exports = ChessBoard;
