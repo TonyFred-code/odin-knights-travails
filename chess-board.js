@@ -66,7 +66,7 @@ class ChessBoard {
   }
 
   isSamePoint([x, y], [a, b]) {
-    if (!this.isValid(x, y) || !this.isValid(a, b)) return false;
+    if (!this.isValid([x, y]) || !this.isValid([a, b])) return false;
 
     return x === a && y === b;
   }
