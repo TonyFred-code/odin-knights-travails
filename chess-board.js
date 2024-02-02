@@ -20,44 +20,21 @@ class ChessBoard {
     const address = node.address;
     const [x, y] = address;
 
-    const upperLeft = [x - 1, y + 2];
-    if (this.isValid(upperLeft)) {
-      node.possibleMoves.push(upperLeft);
-    }
+    const moves = [
+      [x - 1, y + 2],
+      [x + 1, y + 2],
+      [x + 1, y - 2],
+      [x - 1, y - 2],
+      [x + 2, y + 1],
+      [x + 2, y - 1],
+      [x - 2, y + 1],
+      [x - 2, y - 1],
+    ];
 
-    const upperRight = [x + 1, y + 2];
-    if (this.isValid(upperRight)) {
-      node.possibleMoves.push(upperRight);
-    }
-
-    const lowerRight = [x + 1, y - 2];
-    if (this.isValid(lowerRight)) {
-      node.possibleMoves.push(lowerRight);
-    }
-
-    const lowerLeft = [x - 1, y - 2];
-    if (this.isValid(lowerLeft)) {
-      node.possibleMoves.push(lowerLeft);
-    }
-
-    const rightUpper = [x + 2, y + 1];
-    if (this.isValid(rightUpper)) {
-      node.possibleMoves.push(rightUpper);
-    }
-
-    const rightLower = [x + 2, y - 1];
-    if (this.isValid(rightLower)) {
-      node.possibleMoves.push(rightLower);
-    }
-
-    const leftUpper = [x - 2, y + 1];
-    if (this.isValid(leftUpper)) {
-      node.possibleMoves.push(leftUpper);
-    }
-
-    const leftLower = [x - 2, y - 1];
-    if (this.isValid(leftLower)) {
-      node.possibleMoves.push(leftLower);
+    for (const move of moves) {
+      if (this.isValid(move)) {
+        node.possibleMoves.push(move);
+      }
     }
   }
 
