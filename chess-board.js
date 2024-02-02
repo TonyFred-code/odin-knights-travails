@@ -11,7 +11,7 @@ class ChessBoard {
       for (let x = 0; x < 8; x++) {
         const node = new Node(x, y);
         this.#addPossibleMoves(node);
-        this.vertices.push(node);
+        this.vertices[y * 8 + x] = node;
       }
     }
   }
@@ -69,6 +69,12 @@ class ChessBoard {
     if (!this.isValid([x, y]) || !this.isValid([a, b])) return false;
 
     return x === a && y === b;
+  }
+
+  getMoves([x, y]) {
+    if (!this.isValid([x, y])) return null;
+
+    return this.vertices[y * 8 + x];
   }
 }
 
