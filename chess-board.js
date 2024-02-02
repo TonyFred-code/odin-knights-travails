@@ -1,17 +1,19 @@
 const Node = require('./chess-board-node');
 
 class ChessBoard {
+  #BOARD_SIZE = 8;
+
   constructor() {
     this.vertices = [];
     this.#buildBoard();
   }
 
   #buildBoard() {
-    for (let y = 0; y < 8; y++) {
-      for (let x = 0; x < 8; x++) {
+    for (let y = 0; y < this.#BOARD_SIZE; y++) {
+      for (let x = 0; x < this.#BOARD_SIZE; x++) {
         const node = new Node(x, y);
         this.#addPossibleMoves(node);
-        this.vertices[y * 8 + x] = node;
+        this.vertices[y * this.#BOARD_SIZE + x] = node;
       }
     }
   }
@@ -39,7 +41,7 @@ class ChessBoard {
   }
 
   isValid([x, y]) {
-    return x >= 0 && x <= 7 && y >= 0 && y <= 7;
+    return x >= 0 && x < this.#BOARD_SIZE && y >= 0 && y < this.#BOARD_SIZE;
   }
 
   isSamePoint([x, y], [a, b]) {
@@ -51,7 +53,7 @@ class ChessBoard {
   getMoves([x, y]) {
     if (!this.isValid([x, y])) return null;
 
-    return this.vertices[y * 8 + x];
+    return this.vertices[y * this.#BOARD_SIZE + x];
   }
 }
 
