@@ -32,15 +32,35 @@ function KnightMoves(start, end) {
     }
   }
 
+  const pathLengths = {};
+  let shortestPathLength = Infinity;
   for (const path of paths) {
     const pathLength = path.length;
+    const moves = pathLength - 1;
 
-    console.log(`You made it in ${pathLength - 1} moves! Here's your path: \n`);
-
-    for (const move of path) {
-      console.log(move);
+    if (pathLengths[moves]) {
+      pathLengths[moves].push(path)
+    } else {
+      pathLengths[moves] = [[...path]]
     }
+
+    if (moves < shortestPathLength) shortestPathLength = moves
   }
+
+
+  const shortestPaths = pathLengths[shortestPathLength];
+  const shortestPathsLen = shortestPaths.length;
+  let pathCount = 0;
+
+  for (const path of shortestPaths) {
+    console.log(`Path ${++pathCount} of ${shortestPathsLen}`);
+    console.log(`You made it in ${shortestPathLength} move${shortestPathLength > 1 ? 's' : ''}! Here's your path: `);
+    for (const move of path) {
+      console.log(move)
+    }
+    console.log('\n')
+  }
+
 }
 
 KnightMoves([3, 3], [0, 0]);
